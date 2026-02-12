@@ -1,0 +1,314 @@
+:root{
+  --bg1:#7bb7ff;
+  --bg2:#c6dcff;
+  --ink:#0b1020;
+  --card:#ffffff;
+  --accent:#5b2bbf;
+  --muted: rgba(255,255,255,.85);
+
+  --pad: 0px; /* ya no se usa, pero lo dejo por compat */
+}
+
+*{ box-sizing:border-box; }
+html,body{ height:100%; }
+
+body{
+  margin:0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
+  color:var(--ink);
+  background: radial-gradient(1200px 800px at 30% 10%, var(--bg2), var(--bg1));
+  overflow:hidden;
+}
+
+.app{ height:100%; width:100%; }
+.is-hidden{ display:none !important; }
+
+/* =========================
+   Splash (full background)
+========================= */
+.splash{
+  height:100%;
+  width:100%;
+  position:relative;
+  display:grid;
+  place-items:center;
+  overflow:hidden;
+}
+
+.splash__overlay{
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(900px 600px at 20% 20%, rgba(255,255,255,.55), rgba(255,255,255,0) 60%),
+    radial-gradient(1000px 700px at 70% 30%, rgba(255,255,255,.35), rgba(255,255,255,0) 62%),
+    linear-gradient(135deg, rgba(91,43,191,.35), rgba(0,195,138,.18));
+  filter: saturate(1.1);
+}
+
+.splash__content{
+  position:relative;
+  z-index:2;
+  width:min(560px, calc(100% - 48px));
+  text-align:center;
+  display:grid;
+  gap: 14px;
+  justify-items:center;
+}
+
+.splash__logo{
+  width:min(420px, 90%);
+  height:auto;
+  display:block;
+  filter: drop-shadow(0 18px 30px rgba(0,0,0,.18));
+}
+
+.splash__btn{
+  width:min(360px, 100%);
+}
+
+.splash__hint{
+  margin:0;
+  font-size: 13px;
+  color: var(--muted);
+  text-shadow: 0 10px 20px rgba(0,0,0,.25);
+  font-weight: 700;
+}
+
+/* Buttons */
+.btn{
+  border:0;
+  border-radius: 999px;
+  padding: 14px 18px;
+  font-weight: 950;
+  letter-spacing: .2px;
+  cursor:pointer;
+  transition: transform .12s ease, filter .12s ease;
+}
+
+.btn:active{ transform: scale(.98); }
+
+.btn--primary{
+  background: linear-gradient(135deg, var(--accent), #7a3cff);
+  color:#fff;
+}
+
+.btn--wa{
+  background: linear-gradient(135deg, #25D366, #128C7E);
+  color:#fff;
+  text-decoration:none;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  padding: 12px 14px;
+  border-radius: 999px;
+  font-weight: 950;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+/* =========================
+   Stories / Carousel (FULL BLEED)
+========================= */
+.stories{
+  height:100%;
+  width:100%;
+  position:relative;
+  overflow:hidden;
+  touch-action: pan-y;
+  user-select: none;
+  cursor: grab;
+}
+.stories.is-dragging{ cursor: grabbing; }
+
+.stories__track{
+  height:100%;
+  display:flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  width:100%;
+  will-change: transform;
+  transform: translate3d(0,0,0);
+  transition: transform 360ms cubic-bezier(.2,.85,.2,1);
+}
+
+.slide{
+  flex: 0 0 100%;
+  width: 100%;
+  height:100%;
+  padding: 0;              /* <- sin borde */
+  display:grid;
+  place-items: stretch;    /* <- ocupa todo */
+}
+
+/* Card (FULL BLEED, sin sombra, sin redondeo) */
+.card{
+  width: 100%;
+  height: 100%;
+  background: var(--card);
+  border-radius: 0;        /* <- sin redondeo */
+  box-shadow: none;        /* <- sin sombra */
+  overflow:hidden;
+  position:relative;
+}
+
+/* Media */
+.card__media{
+  height:100%;
+  width:100%;
+  position:relative;
+  overflow:hidden;
+  background:#111;
+}
+
+/* Blur background */
+.card__bg{
+  position:absolute;
+  inset:0;
+  background-size: cover;
+  background-position: center;
+  transform: scale(1.12);
+  filter: blur(18px);
+  opacity: .55;
+  pointer-events:none;
+}
+
+/* picture ocupa todo */
+.card__media picture{
+  position:absolute;
+  inset:0;
+  display:block;
+}
+
+/* Main image */
+.card__media picture img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  display:block;
+  object-fit: cover;
+  object-position: center;
+  -webkit-user-drag: none;
+  user-drag: none;
+  user-select: none;
+  pointer-events: none;
+}
+
+.card__gradient{
+  position:absolute;
+  inset:0;
+  background: linear-gradient(0deg, rgba(0,0,0,.66), rgba(0,0,0,.0) 58%);
+  pointer-events:none;
+}
+
+/* Content */
+.card__content{
+  position:absolute;
+  left: 18px;
+  right: 18px;
+  bottom: 100px;
+  color:#fff;
+  display:grid;
+  gap: 10px;
+}
+
+/* Title */
+.card__title{
+  margin:0;
+  font-size: clamp(24px, 4.2vw, 48px);
+  font-weight: 980;
+  line-height:1.03;
+  text-wrap: balance;
+}
+
+/* Description */
+.card__desc{
+  margin:0;
+  color: rgba(255,255,255,.92);
+  font-weight: 650;
+  line-height: 1.6;
+  font-size: clamp(14px, 1.8vw, 18px);
+  max-width: 72ch;
+}
+
+/* Price */
+.card__price{
+  font-weight: 950;
+  font-size: clamp(14px, 1.6vw, 18px);
+  background: rgba(255,255,255,.18);
+  border: 1px solid rgba(255,255,255,.26);
+  padding: 10px 14px;
+  border-radius: 999px;
+  white-space:nowrap;
+}
+
+/* Meta row */
+.card__metaRow{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+/* Dots */
+.dots{
+  position:absolute;
+  bottom: 14px;
+  left: 0;
+  right: 0;
+  display:flex;
+  justify-content:center;
+  gap: 8px;
+  padding: 10px 14px;
+  pointer-events:none;
+}
+
+.dot{
+  width: 8px;
+  height: 8px;
+  border-radius:999px;
+  background: rgba(255,255,255,.55);
+  box-shadow: 0 6px 16px rgba(0,0,0,.18);
+  transform: scale(1);
+  transition: transform 160ms ease, background 160ms ease;
+}
+
+.dot.is-active{
+  background: rgba(255,255,255,.95);
+  transform: scale(1.35);
+}
+
+/* Desktop: se mantiene full bleed, sin límites */
+@media (min-width: 768px){
+  .card__content{
+    left: 28px;
+    right: 28px;
+    bottom: 28px;
+    gap: 12px;
+  }
+}
+
+@media (min-width: 1080px){
+
+  .card__media picture img{
+    width:100%;
+    height:100%;
+    display:block;
+    object-fit: scale-down;
+    object-position: center center;
+    -webkit-user-drag: none;
+    user-drag: none;
+    user-select: none;
+    pointer-events: none;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .stories__track{ transition:none; }
+  .btn{ transition:none; }
+}
+
+

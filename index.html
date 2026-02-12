@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Helados Tesbita</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="app" id="app">
+    <!-- INICIO -->
+    <section class="splash" id="splash" aria-label="Inicio">
+      <div class="splash__overlay" aria-hidden="true"></div>
+
+      <div class="splash__content">
+        <img class="splash__logo" src="assets/logofondo.png" alt="Helados Tesbita" />
+
+        <button class="btn btn--primary splash__btn" id="startBtn" type="button">
+          Ver catálogo
+        </button>
+      </div>
+    </section>
+
+    <!-- CARRUSEL -->
+    <section class="stories is-hidden" id="stories" aria-label="Catálogo">
+      <div class="stories__track" id="track" aria-live="polite"></div>
+      <div class="dots" id="dots" aria-hidden="true"></div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
