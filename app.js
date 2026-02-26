@@ -4,63 +4,72 @@
 const WHATSAPP_NUMBER = "50662943981"; // <-- CAMBIAR (sin +)
 const CURRENCY_LOCALE = "es-CR";
 const CURRENCY_CODE = "CRC";
+const BASE_TEXT = "Base: Crema dulce y leche condensada.";
 
 // ==========================
 // Data
 // ==========================
 const products = [
   {
+    name: "Choco maní",
+    badge: "Nuevo",
+    desc: "Chocolate cremoso, toque de maní y maní tostado sin sal. Peligrosamente bueno.",
+    price: 750,
+    imageMobile: "assets/chocoMani916.webp",
+    imageDesktop: "assets/chocoMani169.webp",
+  },
+  {
     name: "Cheesecake de fresa",
-    desc: "Elaborado a partir de crema dulce y leche condensada sin azúcares añadidos, queso crema y galleta de vainilla de manera manual y artesanal.",
+    desc: "Queso crema y vainilla sobre base de galleta, con fresa para un final fresco y cremoso.",
     price: 750,
     imageMobile: "assets/fresa916.webp",
     imageDesktop: "assets/fresa169.webp",
   },
   {
     name: "Coco",
-    desc: "Elaborado a partir de crema dulce y condensada sin azúcar añadido y rayadura de coco natural de manera manual y artesanal.",
+    desc: "Cremoso y tropical, con coco natural rallado y un aroma suave que se queda.",
     price: 600,
     imageMobile: "assets/coco916.webp",
     imageDesktop: "assets/coco169.webp",
   },
   {
     name: "Cookie Monster",
-    desc: "Elaborado a partir de crema dulce y condensada sin azúcares añadidos, galleta oreo, colorantes en gel y saborizantes, de manera manual y artesanal.",
+    desc: "Oreo intensa y textura crujiente, con un toque divertido de color. Adictivo, punto.",
     price: 600,
     imageMobile: "assets/monster916.webp",
     imageDesktop: "assets/monster169.webp",
   },
   {
     name: "Dulce de leche",
-    desc: "Elaborado a partir de crema dulce y condensada sin azúcares añadidos, dulce de luxe sucedáneo de manera manual y artesanal.",
+    desc: "Sedoso, acaramelado y profundo. El sabor que no necesita presentación.",
     price: 600,
     imageMobile: "assets/dulce916.webp",
     imageDesktop: "assets/dulce169.webp",
   },
   {
     name: "Menta y Chispas de Chocolate",
-    desc: "Elaborado a partir de crema dulce y condensada sin azúcares añadidos, colorantes en gel y saborizantes, Además  de chispas de chocolate amargo como añadido de manera manual y artesanal.",
+    desc: "Menta fresca con chispas de chocolate amargo. Limpio, elegante y con carácter.",
     price: 600,
     imageMobile: "assets/menta916.webp",
     imageDesktop: "assets/menta169.webp",
   },
   {
     name: "Combinado",
-    desc: "Elaborado a partir de crema dulce y condensada sin azúcares añadidos, cocoa dulce  como saborizante manera manual y artesanal.",
+    desc: "Suave y balanceado, con cacao dulce para un final redondo y reconfortante.",
     price: 600,
     imageMobile: "assets/combinado916.webp",
     imageDesktop: "assets/combinado169.webp",
   },
   {
     name: "Maní con miel",
-    desc: "Elaborado a partir de crema dulce y leche condensada sin azúcares añadidos, colorantes en gel y saborizantes, mani con miel tostado de manera manual y artesanal.",
+    desc: "Maní tostado con miel: crujiente, dorado y con un final naturalmente dulce.",
     price: 600,
     imageMobile: "assets/mielmani916.webp",
     imageDesktop: "assets/mielmani169.webp",
   },
   {
     name: "Cookies and Cream",
-    desc: "Elaborado a partir de crema dulce y condensada sin azúcares añadidos, galleta oreo de manera manual y artesanal.",
+    desc: "Cremoso con trozos de Oreo. El clásico, pero bien hecho.",
     price: 600,
     imageMobile: "assets/cookies916.webp",
     imageDesktop: "assets/cookies169.webp",
@@ -195,10 +204,22 @@ function buildSlides() {
             <img src="${p.imageMobile}" alt="${escapeHtml(p.name)}" loading="lazy" draggable="false">
           </picture>
 
+          ${
+            p.badge
+              ? `
+  <div class="ribbon ${p.badge.toLowerCase() === "nuevo" ? "ribbon--new" : ""}" aria-label="${escapeHtml(p.badge)}">
+    <span class="ribbon__text">${escapeHtml(p.badge)}</span>
+  </div>
+`
+              : ""
+          }
+
           <div class="card__gradient"></div>
 
           <div class="card__content">
             <h2 class="card__title">${escapeHtml(p.name)}</h2>
+
+            <p class="card__subtitle">${escapeHtml(BASE_TEXT)}</p>
 
             <p class="card__desc">${escapeHtml(p.desc)}</p>
 
