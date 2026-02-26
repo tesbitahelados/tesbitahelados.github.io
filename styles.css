@@ -222,6 +222,14 @@ body{
   text-wrap: balance;
 }
 
+.card__subtitle{
+  margin: 0;
+  color: rgba(255,255,255,.86);
+  font-weight: 750;
+  font-size: clamp(12px, 1.5vw, 15px);
+  letter-spacing: .2px;
+}
+
 /* Description */
 .card__desc{
   margin:0;
@@ -280,6 +288,58 @@ body{
   transform: scale(1.35);
 }
 
+/* Ribbon / Bookmark */
+.ribbon{
+  position:absolute;
+  top:0;
+  right:18px;
+  z-index: 4;
+  width: 46px;
+  height: 150px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0 16px 30px rgba(0,0,0,.28);
+  overflow:hidden;
+}
+
+/* el corte en V del marcador */
+.ribbon::after{
+  content:"";
+  position:absolute;
+  bottom:-1px;
+  left:0;
+  right:0;
+  margin:auto;
+  width:0;
+  height:0;
+  border-left: 23px solid transparent;
+  border-right: 23px solid transparent;
+  border-top: 18px solid rgba(0,0,0,.18);
+}
+
+/* Texto vertical */
+.ribbon__text{
+  color:#fff;
+  font-weight: 980;
+  font-size: 12px;
+  letter-spacing: .26em;
+  text-transform: uppercase;
+
+  writing-mode: vertical-lr;
+  text-orientation: upright;
+  transform: none;
+}
+
+/* “Nuevo” premium: verde esmeralda (asociado a frescura/exclusividad) */
+.ribbon--new{
+  background: linear-gradient(180deg, #0f766e, #065f46);
+  border-left: 1px solid rgba(255,255,255,.22);
+}
+
 /* Desktop: se mantiene full bleed, sin límites */
 @media (min-width: 768px){
   .card__content{
@@ -288,6 +348,7 @@ body{
     bottom: 28px;
     gap: 12px;
   }
+  .ribbon{ right: 28px; height: 170px; }
 }
 
 @media (min-width: 1080px){
