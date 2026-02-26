@@ -15,8 +15,8 @@ const products = [
     badge: "Nuevo",
     desc: "Chocolate cremoso, toque de maní y maní tostado sin sal. Peligrosamente bueno.",
     price: 750,
-    imageMobile: "assets/chocoMani916.webp",
-    imageDesktop: "assets/chocoMani169.webp",
+    imageMobile: "assets/maniChoco916.webp",
+    imageDesktop: "assets/maniChoco169.webp",
   },
   {
     name: "Cheesecake de fresa",
@@ -393,3 +393,4 @@ try {
 // ==========================
 buildSlides();
 setIndex(0, { animate: false });
+
