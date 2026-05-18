@@ -11,6 +11,14 @@ const BASE_TEXT = "Base: Crema dulce y leche condensada.";
 // ==========================
 const products = [
   {
+    name: "Pie de limón",
+    badge: "Nuevo",
+    desc: "Queso crema suave con jugo y ralladura de limón mesino, equilibrado con un toque de vainilla clara.",
+    price: 750,
+    imageMobile: "assets/pielimon916.webp",
+    imageDesktop: "assets/pielimon169.webp",
+  },
+  {
     name: "Choco maní",
     badge: "Nuevo",
     desc: "Chocolate cremoso, toque de maní y maní tostado sin sal. Peligrosamente bueno.",
