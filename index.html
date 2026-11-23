@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
 
   <title>Helados Tesbita</title>
   <meta name="description" content="Catálogo de Helados Tesbita. Descubrí sabores, presentaciones y novedades. Pedidos y consultas por WhatsApp." />
@@ -10,11 +10,10 @@
   <link rel="canonical" href="https://tesbitahelados.github.io/" />
 
   <!-- Favicon / iconos -->
-  <link rel="icon" href="assets/favicon.ico" />
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/logo.jpeg" />
-  <link rel="icon" type="image/png" sizes="16x16" href="assets/logo.jpeg" />
-  <link rel="apple-touch-icon" sizes="180x180" href="assets/logo.jpeg" />
-  <meta name="theme-color" content="#ffffff" />
+  <link rel="icon" href="assets/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/jpeg" href="assets/logo.jpeg" />
+  <link rel="apple-touch-icon" href="assets/logo.jpeg" />
+  <meta name="theme-color" content="#7bb7ff" />
 
   <!-- Open Graph (Facebook, WhatsApp, LinkedIn) -->
   <meta property="og:type" content="website" />
@@ -23,18 +22,16 @@
   <meta property="og:description" content="Catálogo de Helados Tesbita. Descubrí sabores, presentaciones y novedades." />
   <meta property="og:url" content="https://tesbitahelados.github.io/" />
   <meta property="og:image" content="https://tesbitahelados.github.io/assets/logo.jpeg" />
-  <meta property="og:image:secure_url" content="https://tesbitahelados.github.io/assets/assets/logo.jpeg" />
   <meta property="og:image:alt" content="Helados Tesbita - Catálogo" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  <meta property="og:locale" content="es_ES" />
+  <meta property="og:locale" content="es_CR" />
 
   <!-- Twitter Cards -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Helados Tesbita" />
   <meta name="twitter:description" content="Catálogo de Helados Tesbita. Descubrí sabores, presentaciones y novedades." />
-  <meta name="twitter:image" content="https://tesbitahelados.github.io/assets/assets/logo.jpeg" />
+  <meta name="twitter:image" content="https://tesbitahelados.github.io/assets/logo.jpeg" />
 
+  <link rel="preload" as="image" href="assets/logofondo.png" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -44,7 +41,7 @@
       <div class="splash__overlay" aria-hidden="true"></div>
 
       <div class="splash__content">
-        <img class="splash__logo" src="assets/logofondo.png" alt="Helados Tesbita" />
+        <img class="splash__logo" src="assets/logofondo.png" alt="Helados Tesbita" width="420" height="420" />
 
         <button class="btn btn--primary splash__btn" id="startBtn" type="button">
           Ver catálogo
@@ -52,13 +49,21 @@
       </div>
     </section>
 
-    <!-- CARRUSEL -->
-    <section class="stories is-hidden" id="stories" aria-label="Catálogo">
-      <div class="stories__track" id="track" aria-live="polite"></div>
-      <div class="dots" id="dots" aria-hidden="true"></div>
+    <!-- CARRUSEL (el JS agrega flechas, puntos y la región para lectores de pantalla) -->
+    <section class="stories is-hidden" id="stories" aria-label="Menú de helados">
+      <div class="stories__track" id="track"></div>
+      <div class="dots" id="dots"></div>
     </section>
   </main>
 
-  <script src="app.js"></script>
+  <noscript>
+    <p style="padding:24px;text-align:center">
+      Para ver el catálogo active JavaScript o escríbanos por
+      <a href="https://wa.me/50662943981">WhatsApp</a>.
+    </p>
+  </noscript>
+
+  <script src="app.js" defer></script>
+  <script src="carrito.js" defer></script>
 </body>
 </html>
