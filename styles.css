@@ -373,3 +373,241 @@ body{
 }
 
 
+/* =====================================================
+   MEJORAS: pegar al FINAL de su CSS actual (no borra nada)
+===================================================== */
+
+/* Altura real en móviles (barra del navegador) */
+html, body { height: 100%; height: 100dvh; }
+.app, .splash, .stories { height: 100dvh; }
+
+/* Solo lectores de pantalla */
+.sr-only{
+  position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+  overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
+}
+
+/* Foco visible para teclado */
+:focus-visible{
+  outline: 3px solid #fff;
+  outline-offset: 3px;
+  box-shadow: 0 0 0 6px rgba(91,43,191,.65);
+}
+.stories:focus{ outline:none; }
+
+/* Texto más legible sobre la foto */
+.card__title{ text-shadow: 0 2px 18px rgba(0,0,0,.35); }
+.card__desc{ text-shadow: 0 1px 12px rgba(0,0,0,.35); }
+
+/* Respeta la barra inferior del iPhone */
+.card__content{ bottom: calc(76px + env(safe-area-inset-bottom, 0px)); }
+.dots{ bottom: calc(10px + env(safe-area-inset-bottom, 0px)); }
+
+/* Puntos clicables (ahora son botones) */
+.dots{ pointer-events:none; }
+.dot{
+  appearance:none; border:0; padding:0; cursor:pointer;
+  pointer-events:auto; position:relative;
+}
+.dot::before{ /* área táctil ampliada sin cambiar el tamaño visual */
+  content:""; position:absolute; inset:-9px -5px;
+}
+
+/* Botones con estado hover/pressed */
+.btn--wa{ box-shadow: 0 10px 24px rgba(18,140,126,.35); }
+@media (hover:hover){
+  .btn--wa:hover, .btn--primary:hover{ filter: brightness(1.08); }
+}
+
+/* Flechas de navegación (solo escritorio) */
+.nav{
+  display:none;
+  position:absolute; top:50%; z-index:6;
+  width:48px; height:48px; margin-top:-24px;
+  border:1px solid rgba(255,255,255,.35);
+  border-radius:999px;
+  background: rgba(0,0,0,.32);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color:#fff; cursor:pointer;
+  align-items:center; justify-content:center;
+  transition: opacity .15s ease, background .15s ease;
+}
+.nav--prev{ left:20px; }
+.nav--next{ right:20px; }
+.nav:disabled{ opacity:.25; cursor:default; }
+@media (hover:hover){ .nav:not(:disabled):hover{ background: rgba(0,0,0,.5); } }
+
+@media (min-width: 768px){
+  .nav{ display:inline-flex; }
+  .dots{ bottom: 18px; }
+}
+
+/* Escritorio: el contenido no choca con las flechas */
+@media (min-width: 1080px){
+  .card__content{ left: 96px; right: 96px; }
+}
+
+/* Movimiento reducido */
+@media (prefers-reduced-motion: reduce){
+  .dot, .nav{ transition:none; }
+}
+
+/* Botón "Agregar" dentro de cada tarjeta */
+.card__actions{
+  display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end;
+}
+.btn--add{
+  background: rgba(255,255,255,.95);
+  color: var(--accent);
+  padding: 12px 14px;
+  font-size: 14px;
+  white-space: nowrap;
+  display:inline-flex; align-items:center; gap:8px;
+}
+.btn--add .chip{
+  background: var(--accent); color:#fff;
+  min-width:22px; height:22px; padding:0 6px;
+  border-radius:999px; font-size:12px;
+  display:inline-grid; place-items:center;
+}
+@media (max-width: 520px){
+  .card__metaRow{ flex-wrap:wrap; }
+  .card__actions{ flex:1 1 100%; }
+  .card__actions .btn{ flex:1 1 0; }
+}
+/* =====================================================
+   CARRITO: pegar al FINAL de styles.css
+===================================================== */
+
+/* Botón "Agregar" dentro de cada tarjeta */
+.card__actions{
+  display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end;
+}
+.btn--add{
+  background: rgba(255,255,255,.95);
+  color: var(--accent);
+  padding: 12px 14px;
+  font-size: 14px;
+  white-space: nowrap;
+  display:inline-flex; align-items:center; gap:8px;
+}
+.btn--add .chip{
+  background: var(--accent); color:#fff;
+  min-width:22px; height:22px; padding:0 6px;
+  border-radius:999px; font-size:12px;
+  display:inline-grid; place-items:center;
+}
+@media (max-width: 520px){
+  .card__metaRow{ flex-wrap:wrap; }
+  .card__actions{ flex:1 1 100%; }
+  .card__actions .btn{ flex:1 1 0; }
+}
+
+/* Botón flotante (arriba a la izquierda; la cinta "Nuevo" queda a la derecha) */
+.cart-fab{
+  display:none;
+  position:absolute; z-index:8;
+  top: calc(14px + env(safe-area-inset-top, 0px));
+  left: 14px;
+  align-items:center; gap:8px;
+  padding: 10px 14px;
+  border:1px solid rgba(255,255,255,.35);
+  border-radius:999px;
+  background: rgba(0,0,0,.42);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color:#fff; font: inherit; font-weight:900; font-size:14px;
+  cursor:pointer;
+}
+.stories:not(.is-hidden) ~ .cart-fab{ display:inline-flex; }
+.cart-fab.is-empty{ display:none !important; }
+.cart-fab__count{
+  background:#fff; color:var(--accent);
+  min-width:22px; height:22px; padding:0 6px;
+  border-radius:999px; font-size:12px;
+  display:inline-grid; place-items:center;
+}
+@media (max-width: 420px){ .cart-fab__label{ display:none; } }
+@media (min-width: 768px){ .cart-fab{ top:24px; left:28px; } }
+
+/* Aviso al agregar */
+.cart-toast{
+  position:absolute; z-index:9; left:50%;
+  top: calc(64px + env(safe-area-inset-top, 0px));
+  transform: translate(-50%, -8px);
+  background: rgba(11,16,32,.92); color:#fff;
+  padding: 10px 16px; border-radius:999px;
+  font-weight:800; font-size:14px;
+  opacity:0; pointer-events:none;
+  transition: opacity .18s ease, transform .18s ease;
+  max-width: calc(100% - 32px); text-align:center;
+}
+.cart-toast.is-on{ opacity:1; transform: translate(-50%, 0); }
+
+/* Panel del pedido */
+.cart{ position:fixed; inset:0; z-index:20; }
+.cart[hidden]{ display:none; }
+.cart__backdrop{ position:absolute; inset:0; background: rgba(11,16,32,.55); }
+.cart__sheet{
+  position:absolute; left:0; right:0; bottom:0;
+  max-height: 88dvh;
+  display:flex; flex-direction:column;
+  background:#fff; color:var(--ink);
+  border-radius: 20px 20px 0 0;
+  padding: 18px 18px calc(18px + env(safe-area-inset-bottom, 0px));
+  overflow:auto;
+  box-shadow: 0 -20px 50px rgba(0,0,0,.25);
+}
+.cart__head{ display:flex; align-items:center; justify-content:space-between; }
+.cart__head h2{ margin:0; font-size:22px; font-weight:900; }
+.cart__x{
+  width:40px; height:40px; border:0; border-radius:999px;
+  background:#f0eefa; color:var(--accent);
+  font-size:26px; line-height:1; cursor:pointer;
+}
+
+.cart__list{ list-style:none; margin:12px 0; padding:0; display:grid; gap:4px; }
+.cart__item{
+  display:grid; grid-template-columns: 1fr auto auto; gap:12px; align-items:center;
+  padding: 10px 0; border-bottom:1px solid #eee;
+}
+.cart__info{ display:grid; gap:2px; min-width:0; }
+.cart__info strong{ font-size:15px; }
+.cart__info span{ font-size:13px; color:#5b6070; }
+.cart__sub{ font-weight:900; font-size:14px; min-width:64px; text-align:right; }
+.cart__qty{ display:inline-flex; align-items:center; gap:4px; }
+.cart__qty button{
+  width:34px; height:34px; border:0; border-radius:999px;
+  background:#f0eefa; color:var(--accent);
+  font-size:20px; font-weight:900; cursor:pointer;
+}
+.cart__qty button:disabled{ opacity:.35; cursor:default; }
+.cart__qty output{ min-width:24px; text-align:center; font-weight:900; }
+
+.cart__form{ display:grid; gap:10px; margin-bottom:12px; }
+.cart__form label{ display:grid; gap:4px; font-size:13px; font-weight:800; color:#3b3f50; }
+.cart__form input, .cart__form textarea{
+  font: inherit; font-weight:500; color:var(--ink);
+  padding:10px 12px; border:1px solid #d9d6e8; border-radius:12px; resize:vertical;
+}
+
+.cart__foot{ display:grid; gap:10px; }
+.cart__total{ display:flex; justify-content:space-between; align-items:baseline; font-size:18px; }
+.cart__send{ width:100%; padding:14px 18px; font-size:15px; }
+.cart__clear{
+  border:0; background:none; color:#7a2d2d;
+  font: inherit; font-weight:800; font-size:14px; padding:8px; cursor:pointer;
+}
+
+/* Escritorio: panel lateral */
+@media (min-width: 768px){
+  .cart__sheet{
+    left:auto; top:0; width:min(440px, 100%);
+    max-height:none; border-radius: 20px 0 0 20px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .cart-toast{ transition:none; }
+}
